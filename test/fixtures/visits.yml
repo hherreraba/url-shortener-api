@@ -1,13 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  ip_address: MyString
-  user_agent: MyString
+  ip_address: '202.60.23.2'
+  user_agent: 'google-chrome'
   date_of_visit: 2021-12-02
   link: one
-
-two:
-  ip_address: MyString
-  user_agent: MyString
-  date_of_visit: 2021-12-02
-  link: two

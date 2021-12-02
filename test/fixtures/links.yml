@@ -1,13 +1,8 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  original_url: MyText
-  code: MyString
+  id: 1
+  original_url: 'www.my-app/this-is-a-long-url'
+  code: 'aDlh2K'
   visitor_counter: 1
   user: one
-
-two:
-  original_url: MyText
-  code: MyString
-  visitor_counter: 1
-  user: two

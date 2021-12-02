@@ -1,4 +1,4 @@
 class Link < ApplicationRecord
   belongs_to :user
-  has_many :visit_statistics
+  has_many :visits, dependent: :destroy
 end
