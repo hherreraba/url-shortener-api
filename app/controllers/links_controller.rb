@@ -2,6 +2,7 @@ require 'date'
 
 class LinksController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: :show
 
   respond_to :json
 
