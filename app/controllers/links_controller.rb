@@ -10,6 +10,22 @@ class LinksController < ApplicationController
     render json: { links: links }
   end
 
+  def show
+    short_url = Link.select('id', 'original_url', 'visitor_counter').find_by(code: params[:code])
+    short_url.increment!(:visitor_counter)
+    visit = Visit.new(ip_address: request.remote_ip, user_agent: request.user_agent,
+                               date_of_visit: Date.today, link_id: short_url.id)
+
+    if visit.save
+      render json: {
+        message: 'Statistics saved successfully',
+        original_url: short_url
+      }
+    else
+      render json: { message: 'Something went wrong' }
+    end
+  end
+
   def create
     last_id = Link.maximum(:id) || 1
     code = encode(last_id.to_s)

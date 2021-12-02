@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_02_055540) do
+ActiveRecord::Schema.define(version: 2021_12_02_075407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_12_02_055540) do
   create_table "links", force: :cascade do |t|
     t.text "original_url"
     t.string "code"
-    t.integer "visitor_counter"
+    t.integer "visitor_counter", default: 0
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -43,5 +43,16 @@ ActiveRecord::Schema.define(version: 2021_12_02_055540) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "visits", force: :cascade do |t|
+    t.string "ip_address"
+    t.string "user_agent"
+    t.date "date_of_visit"
+    t.bigint "link_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["link_id"], name: "index_visits_on_link_id"
+  end
+
   add_foreign_key "links", "users"
+  add_foreign_key "visits", "links"
 end

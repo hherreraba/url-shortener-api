@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :links
+  resources :links, except: :show
+  get '/:code', to: 'links#show'
   devise_for :users,
              controllers: {
                sessions: 'users/sessions',
