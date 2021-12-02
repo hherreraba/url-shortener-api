@@ -7,7 +7,7 @@ class LinksController < ApplicationController
   respond_to :json
 
   def index
-    links = Link.all.select('id', 'original_url', 'code')
+    links = Link.all.select('id', 'original_url', 'code').where(user_id: current_user.id)
     render json: { links: links }
   end
 
