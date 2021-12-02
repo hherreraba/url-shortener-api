@@ -33,6 +33,16 @@ class LinksController < ApplicationController
     end
   end
 
+  def destroy
+    link = Link.find_by(code: params[:id])
+
+    if link.destroy
+      render json: { message: 'Url successfully deleted' }
+    else
+      render json: { message: 'Something went wrong' }
+    end
+  end
+
   private
 
   def encode(last_id)
